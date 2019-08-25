@@ -1,0 +1,27 @@
+{
+  "name": "miniprogram-cli",
+  "version": "0.0.1",
+  "description": "Wechat Miniprogram Devtool CLI for Node",
+  "main": "dist/index.js",
+  "bin": "dist/bin.js",
+  "scripts": {
+    "start": "tsc --watch",
+    "build": "tsc",
+    "test": "npm run build"
+  },
+  "keywords": [
+    "Wecaht",
+    "Miniprogram",
+    "Devtool",
+    "CLI"
+  ],
+  "author": "NewFuture",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^12.7.2",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "iconv-lite": "^0.5.0"
+  }
+}
