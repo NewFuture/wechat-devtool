@@ -1,5 +1,5 @@
 {
-  "name": "miniprogram-cli",
+  "name": "wechat-devtool",
   "version": "0.0.1",
   "description": "Wechat Miniprogram Devtool CLI for Node",
   "main": "dist/index.js",
@@ -15,6 +15,10 @@
     "Devtool",
     "CLI"
   ],
+  "repository": {
+    "type": "git",
+        "url": "git+https://github.com/NewFuture/miniprogram-cli.git"
+  },
   "author": "NewFuture",
   "license": "MIT",
   "devDependencies": {
