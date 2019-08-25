@@ -4,6 +4,8 @@ Wechat Miniprogram Devtool CLI cross-platform wrapper for NodeJS and npm
 
 跨平台命令行调用微信开发工具
 
+[![Build Status](https://travis-ci.org/NewFuture/miniprogram-cli.svg?branch=master)](https://travis-ci.org/NewFuture/miniprogram-cli)
+
 ## CLI Usage
 
 命令行调用
@@ -16,12 +18,15 @@ npx wechat-devtool -o
 ```
 
 ## JS Module
-作为JS模块使用
+
+作为 JS 模块使用
 
 安装
+
 ```bash
 npm i wechat-devtool
 ```
+
 使用
 
 ```js
