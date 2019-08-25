@@ -1,12 +1,21 @@
 {
   "name": "wechat-devtool",
-  "version": "0.0.1",
-  "description": "Wechat Miniprogram Devtool CLI for Node",
+  "version": "0.1.0",
+  "description": "Wechat Miniprogram Devtool CLI for NodeJS",
   "main": "dist/index.js",
-  "bin": "dist/bin.js",
+  "bin": {
+    "wechat-devtool": "dist/bin.js",
+    "devtool": "dist/bin.js",
+    "cli": "dist/bin.js"
+  },
+  "files": [
+    "dist/",
+    "src/"
+  ],
   "scripts": {
     "start": "tsc --watch",
     "build": "tsc",
+    "prepublishOnly": "tsc",
     "test": "npm run build"
   },
   "keywords": [
@@ -17,7 +26,7 @@
   ],
   "repository": {
     "type": "git",
-        "url": "git+https://github.com/NewFuture/miniprogram-cli.git"
+    "url": "git+https://github.com/NewFuture/miniprogram-cli.git"
   },
   "author": "NewFuture",
   "license": "MIT",
