@@ -4,9 +4,9 @@
   "description": "Wechat Miniprogram Devtool CLI for NodeJS",
   "main": "dist/index.js",
   "bin": {
-    "wechat-devtool": "dist/cli.js",
-    "upload": "dist/upload.js",
-    "cli": "dist/cli.js"
+    "wechat-devtool": "dist/bin/cli.js",
+    "upload": "dist/bin/upload.js",
+    "cli": "dist/bin/cli.js"
   },
   "files": [
     "dist/",
