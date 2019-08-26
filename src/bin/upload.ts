@@ -3,9 +3,10 @@
 /**
  * 快速上传
  */
+import { resolve } from 'path';
+
 import { cliSpawn } from '../lib/cli';
 import { getCommitMsg } from '../lib/git';
-import { resolve } from 'path';
 
 const OPTION_UPLOAD_DESC = '--upload-desc';
 const OPTION_UPLOAD_OUTPUT = '--upload-info-output';

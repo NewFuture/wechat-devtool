@@ -9,14 +9,13 @@ Wechat Miniprogram Devtool CLI cross-platform wrapper for NodeJS and npm
 ## quick start
 
 免安装，命令行调用
-https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html
 
-与官网用法一致,使用`npx wechat-devtool`代替`cli`即可
+与[官网 cli](https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html)用法一致(额外功能是支持相对路径): 使用`npx wechat-devtool`代替`cli`即可
 
 ```bash
 npx wechat-devtool
-# 参数调用和原生CLI 参数完全一样
-npx wechat-devtool -o "D:/Project/test-mp/dist/"
+# 参数调用和原生CLI 参数完全一样 但是支持相对路径
+npx wechat-devtool -o "./dist"
 ```
 
 快速上传
