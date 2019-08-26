@@ -23,8 +23,7 @@ function getVersion() {
  * `upload path [--upload-desc <desc>] [--upload-info-output <path>]`
  * `upload version@path [--upload-desc <desc>] [--upload-info-output <path>]`
  */
-async function getArguments() {
-    const args = process.argv.slice(2);
+async function getArguments(args: string[]) {
     const version = getVersion();
 
     if (args[0] && args[0].startsWith('--upload')) {
@@ -44,4 +43,4 @@ async function getArguments() {
     return args;
 }
 
-getArguments().then(args => cliSpawn(args));
+getArguments(process.argv.slice(2)).then(args => cliSpawn(args));
