@@ -19,10 +19,31 @@ npx wechat-devtool
 
 ## 高级用法
 
-`npm install wechat-devtool -D` 之后会添加其他命令到本地项目,可在 npm scripts 中直接调用
+```bash
+npm install wechat-devtool -D
+```
+
+安装之后会添加其他命令到本地项目,可在 npm scripts 中直接调用
 
 - `cli` 等同于开发工具 CLI,更具系统和安装环境自动调用
 - `upload` 快速上传(对 upload 操作的简化) `upload [[version@]path] [--upload-desc <desc>] [--upload-info-output <path>]`
+
+`package.json` 配置文件
+
+```json
+{
+  "scripts": {
+    "upload": "upload ./dist",
+    "cli": "cli"
+  }
+}
+```
+
+下面命令自动上传 dist 目录
+
+```bash
+npm run upload
+```
 
 ## JS 模块调用
 
