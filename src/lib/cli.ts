@@ -3,7 +3,7 @@ import path = require('path');
 import fs = require('fs');
 
 import iconv from 'iconv-lite';
-import { exec, execFile, spawn } from './lib/exec';
+import { exec, execFile, spawn } from './promise';
 import { SpawnOptions } from 'child_process';
 
 const DEFAULT_CLI = 'cli';
@@ -68,7 +68,11 @@ export async function cli(...args: string[]) {
  * @param args 
  * @param options 
  */
-export async function cliSpawn(args: string[], options: SpawnOptions = { windowsHide: true }) {
+export async function cliSpawn(args: string[], options: SpawnOptions = {
+    stdio: 'inherit',
+    shell: true,
+    windowsHide: true,
+}) {
     const cliPath = await getCLIPath();
     return spawn('"' + cliPath + '"' || DEFAULT_CLI, args, options);
 }
