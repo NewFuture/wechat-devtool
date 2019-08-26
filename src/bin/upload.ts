@@ -29,7 +29,7 @@ function getVersion() {
             version = require(resolve('package.json')).version
         } catch{ }
     }
-    const versionDesc = `${version || ""}:${get2Digit(now.getMonth() + 1)}${get2Digit(now.getDate())}${get2Digit(now.getHours())}${get2Digit(now.getMinutes())}`
+    const versionDesc = `${version || ""}-${get2Digit(now.getMonth() + 1)}${get2Digit(now.getDate())}${get2Digit(now.getHours())}${get2Digit(now.getMinutes())}`
     return versionDesc[0] === '-' ? versionDesc.substr(1) : versionDesc;
 }
 
@@ -57,7 +57,7 @@ async function getArguments(args: string[]) {
             args[outputIndex + 1] = resolve(args[outputIndex + 1]);
         } else {
             // 后面是空 使用默认命令
-            args.splice(outputIndex + 1, 0, resolve(`log.${version}.json`));
+            args.splice(outputIndex + 1, 0, resolve(`log-${version}.json`));
         }
     }
 
