@@ -15,6 +15,19 @@ https://developers.weixin.qq.com/miniprogram/dev/devtools/cli.html
 
 ```bash
 npx wechat-devtool
+# 参数调用和原生CLI 参数完全一样
+npx wechat-devtool -o "D:/Project/test-mp/dist/"
+```
+
+快速上传
+
+```bash
+# 当前目录
+npx -p wechat-devtool upload
+# 上传 dist 目录
+npx -p wechat-devtool upload ./dist
+# 记录上传日志
+npx -p wechat-devtool upload ./dist --upload-info-output
 ```
 
 ## 高级用法
