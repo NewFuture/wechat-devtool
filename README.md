@@ -15,7 +15,7 @@ Wechat Miniprogram Devtool CLI cross-platform wrapper for NodeJS and npm
 ```bash
 npx wechat-devtool
 # 参数调用和原生CLI 参数完全一样 但是支持相对路径
-npx wechat-devtool -o "./dist"
+npx wechat-devtool --open ./dist
 ```
 
 快速上传
