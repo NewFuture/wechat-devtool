@@ -6,6 +6,15 @@ Wechat Miniprogram Devtool CLI cross-platform wrapper for NodeJS and npm
 
 [![Build Status](https://travis-ci.org/NewFuture/miniprogram-cli.svg?branch=master)](https://travis-ci.org/NewFuture/miniprogram-cli)
 
+## required 所需条件
+
+1. 已经安装 [微信开发工具 devtools](https://developers.weixin.qq.com/miniprogram/dev/devtools/download.html)
+2. 开启开发工具的设置`端口调用`
+
+> 中文: 打开工具 -> 设置 -> 安全设置，将服务端口开启。
+>
+> English: open IDE -> Settings -> Security Settings, and set Service Port On.
+
 ## quick start
 
 免安装，命令行调用

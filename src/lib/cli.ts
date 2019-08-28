@@ -3,7 +3,7 @@ import path = require('path');
 import fs = require('fs');
 
 import iconv from 'iconv-lite';
-import { exec, execFile, spawn } from './promise';
+import { exec, execFile, spawn, readFile, exists } from './promise';
 import { SpawnOptions } from 'child_process';
 
 const DEFAULT_CLI = 'cli';
@@ -48,6 +48,17 @@ export async function getCLIPath() {
             break;
     }
     return wxPaths.find((wxpath) => fs.existsSync(wxpath));
+}
+
+/**
+ * 获取CLI开启的端口号
+ */
+export function getPort(): Promise<number> {
+    const home = os.homedir()
+    const portPath = process.platform === 'win32'
+        ? path.join(home, '/AppData/Local/微信web开发者工具/User Data/Default/.ide')
+        : path.join(home, '/Library/Application Support/微信web开发者工具/Default/.ide')
+    return exists(portPath).then(isExist => isExist ? +readFile(portPath) : Promise.reject(isExist))
 }
 
 /**

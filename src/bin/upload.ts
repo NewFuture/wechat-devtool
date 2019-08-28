@@ -7,6 +7,7 @@ import { resolve } from 'path';
 
 import { cliSpawn } from '../lib/cli';
 import { getCommitMsg } from '../lib/git';
+import { getPkgVersion } from '../lib/npm';
 
 const OPTION_UPLOAD_DESC = '--upload-desc';
 const OPTION_UPLOAD_OUTPUT = '--upload-info-output';
@@ -22,14 +23,9 @@ function get2Digit(int: number) {
 /**
  * 获取版本信息
  */
-function getVersion() {
+function getVersionStr() {
     const now = new Date();
-    let version = process.env.npm_package_version;
-    if (!version) {
-        try {
-            version = require(resolve('package.json')).version
-        } catch{ }
-    }
+    const version = getPkgVersion()
     const versionDesc = `${version || ""}-${get2Digit(now.getMonth() + 1)}${get2Digit(now.getDate())}${get2Digit(now.getHours())}${get2Digit(now.getMinutes())}`
     return versionDesc[0] === '-' ? versionDesc.substr(1) : versionDesc;
 }
@@ -40,8 +36,7 @@ function getVersion() {
  * `upload version@path [--upload-desc <desc>] [--upload-info-output <path>]`
  */
 async function getArguments(args: string[]) {
-    const version = getVersion();
-
+    const version = getVersionStr();
     // --upload
     if (!args[0] || args[0].startsWith('--upload')) {
         args.unshift(`${version}@${process.cwd()}`);

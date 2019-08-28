@@ -11,10 +11,10 @@ export async function getCommitMsg(): Promise<string> {
     try {
         const gitLog = await exec('git log -1 --pretty=%B')
         return gitLog.stdout;
-    } catch{}
+    } catch{ }
 
     if (await exists(EDIT_MSG_FILE)) {
         return (await readFile(EDIT_MSG_FILE)).toString();
     }
-    return  Promise.reject('not found')
+    return Promise.reject('not found')
 }
