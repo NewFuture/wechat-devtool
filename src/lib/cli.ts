@@ -56,9 +56,13 @@ export async function getCLIPath() {
 export function getPort(): Promise<number> {
     const home = os.homedir()
     const portPath = process.platform === 'win32'
-        ? path.join(home, '/AppData/Local/微信web开发者工具/User Data/Default/.ide')
-        : path.join(home, '/Library/Application Support/微信web开发者工具/Default/.ide')
-    return exists(portPath).then(isExist => isExist ? +readFile(portPath) : Promise.reject(isExist))
+        ? path.join(home, '/AppData/Local/微信开发者工具/User Data/Default/.ide')
+        : path.join(home, '/Library/Application Support/微信开发者工具/Default/.ide');
+    return exists(portPath).then(
+        isExist => isExist
+            ? readFile(portPath).then(p => +p.toString())
+            : Promise.reject(isExist)
+    );
 }
 
 /**
