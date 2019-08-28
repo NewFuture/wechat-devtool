@@ -62,7 +62,7 @@ async function getArguments(args: string[]) {
         try {
             const msg = await getCommitMsg();
             args.push(OPTION_UPLOAD_DESC);
-            args.push(msg.trim());
+            args.push(msg.trim().substr(0, 2048));
         } catch{ }
     }
 

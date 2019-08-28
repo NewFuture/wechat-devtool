@@ -80,7 +80,7 @@ export function getPort(): Promise<number> {
 export async function cli(...args: string[]) {
     const cliPath = await getCLIPath();
     if (cliPath) {
-        return execFile(cliPath, args.map(quote));
+        return execFile(cliPath, args);
     } else {
         return exec('"' + DEFAULT_CLI + '" ' + args.map(quote).join(' '))
     }
