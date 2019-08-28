@@ -9,6 +9,14 @@ import { SpawnOptions } from 'child_process';
 const DEFAULT_CLI = 'cli';
 
 /**
+ * 添加引号
+ * @param arg 
+ */
+function quote(arg: string) {
+    return /\s/.test(arg) ? JSON.stringify(arg) : arg;
+}
+
+/**
  * 获取 小程序CLI 路径
  * refer https://github.com/egret-labs/egret-core/blob/master/tools/commands/run.ts
  */
@@ -72,9 +80,9 @@ export function getPort(): Promise<number> {
 export async function cli(...args: string[]) {
     const cliPath = await getCLIPath();
     if (cliPath) {
-        return execFile(cliPath, args);
+        return execFile(cliPath, args.map(quote));
     } else {
-        return exec(DEFAULT_CLI + ' ' + args.join(' '))
+        return exec('"' + DEFAULT_CLI + '" ' + args.map(quote).join(' '))
     }
 }
 
@@ -87,7 +95,8 @@ export async function cliSpawn(args: string[], options: SpawnOptions = {
     stdio: 'inherit',
     shell: true,
     windowsHide: true,
+    windowsVerbatimArguments: true,
 }) {
     const cliPath = await getCLIPath();
-    return spawn('"' + cliPath + '"' || DEFAULT_CLI, args, options);
+    return spawn('"' + cliPath + '"' || DEFAULT_CLI, args.map(quote), options);
 }
