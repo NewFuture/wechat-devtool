@@ -3,11 +3,11 @@ import path = require('path');
 import fs = require('fs');
 
 import iconv from 'iconv-lite';
-import { exec, execFile, spawn, readFile, exists } from './promise';
+import { exec, execFile, spawn, readFile } from './promise';
 import { SpawnOptions } from 'child_process';
 
 const DEFAULT_CLI = 'cli';
-
+let cliPath: string | undefined;
 /**
  * 添加引号
  * @param arg 
@@ -21,6 +21,9 @@ function quote(arg: string) {
  * refer https://github.com/egret-labs/egret-core/blob/master/tools/commands/run.ts
  */
 export async function getCLIPath() {
+    if (cliPath) {
+        return cliPath;
+    }
     const wxPaths: string[] = [];
     switch (os.platform()) {
         case "darwin":
@@ -55,7 +58,7 @@ export async function getCLIPath() {
 
             break;
     }
-    return wxPaths.find((wxpath) => fs.existsSync(wxpath));
+    return cliPath = wxPaths.find((wxpath) => fs.existsSync(wxpath));
 }
 
 /**
@@ -63,14 +66,22 @@ export async function getCLIPath() {
  */
 export function getPort(): Promise<number> {
     const home = os.homedir()
-    const portPath = process.platform === 'win32'
-        ? path.join(home, '/AppData/Local/微信开发者工具/User Data/Default/.ide')
-        : path.join(home, '/Library/Application Support/微信开发者工具/Default/.ide');
-    return exists(portPath).then(
-        isExist => isExist
-            ? readFile(portPath).then(p => +p.toString())
-            : Promise.reject(isExist)
-    );
+    const portPaths = process.platform === 'win32'
+        ? [
+            path.join(home, '/AppData/Local/微信开发者工具/User Data/Default/.ide'),
+            path.join(home, '/AppData/Local/微信web开发者工具/User Data/Default/.ide')
+        ]
+        : [
+            path.join(home, '/Library/Application Support/微信开发者工具/Default/.ide'),
+            path.join(home, '/Library/Application Support/微信开web发者工具/Default/.ide')
+        ]
+
+    const portPath = portPaths.find(p => fs.existsSync(p));
+    if (portPath) {
+        return readFile(portPath).then(p => +p.toString());
+    } else {
+        return Promise.reject(false);
+    }
 }
 
 /**
