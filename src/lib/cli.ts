@@ -27,7 +27,7 @@ export async function getCLIPath() {
     const wxPaths: string[] = [];
     switch (os.platform()) {
         case "darwin":
-            const result = await exec("defaults read com.tencent.wechat.devtools LastRunAppBundlePath");
+            const result = await exec("defaults read com.tencent.wechat.devtools LastRunAppBundlePath").catch(() => undefined);
             if (result && result.stdout) {
                 const stdout = result.stdout.replace(/\n/g, "");
                 wxPaths.push(path.join(stdout, "/Contents/Resources/app.nw/bin/cli"));
@@ -36,11 +36,6 @@ export async function getCLIPath() {
             wxPaths.push("/Applications/wechatwebdevtools.app/Contents/Resources/app.nw/bin/cli");
             break;
         case "win32":
-            // defaults read
-            wxPaths.push(
-                "C:\\Program Files (x86)\\Tencent\\微信web开发者工具\\cli.bat",
-                "C:\\Program Files\\Tencent\\微信web开发者工具\\cli.bat"
-            );
             try {
                 const encoding = 'cp936';
                 const result2 = await exec('REG QUERY "HKLM\\SOFTWARE\\Wow6432Node\\Tencent\\微信web开发者工具"', { encoding: 'buffer' });
@@ -55,7 +50,11 @@ export async function getCLIPath() {
             } catch (error) {
 
             }
-
+            // defaults read
+            wxPaths.push(
+                "C:\\Program Files (x86)\\Tencent\\微信web开发者工具\\cli.bat",
+                "C:\\Program Files\\Tencent\\微信web开发者工具\\cli.bat"
+            );
             break;
     }
     return cliPath = wxPaths.find((wxpath) => fs.existsSync(wxpath));
