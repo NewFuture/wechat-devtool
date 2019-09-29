@@ -27,7 +27,9 @@ export async function getCLIPath() {
     const wxPaths: string[] = [];
     switch (os.platform()) {
         case "darwin":
-            const result = await exec("defaults read com.tencent.wechat.devtools LastRunAppBundlePath").catch(() => undefined);
+            const result = await exec("defaults read com.tencent.webplusdevtools LastRunAppBundlePath")
+                .catch(() => exec("defaults read com.tencent.wechat.devtools LastRunAppBundlePath")) // 旧版包名
+                .catch(() => undefined);
             if (result && result.stdout) {
                 const stdout = result.stdout.replace(/\n/g, "");
                 wxPaths.push(path.join(stdout, "/Contents/Resources/app.nw/bin/cli"));
