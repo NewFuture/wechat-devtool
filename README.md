@@ -1,10 +1,11 @@
-# wechat-devtool
+# wechat-devtool [![npm version](https://badge.fury.io/js/wechat-devtool.svg)](https://www.npmjs.com/package/miniprogram-build)
 
 Wechat Miniprogram Devtool CLI cross-platform wrapper for NodeJS and npm
 
 跨平台命令行调用微信开发工具
 
-[![Build Status](https://travis-ci.org/NewFuture/miniprogram-cli.svg?branch=master)](https://travis-ci.org/NewFuture/miniprogram-cli)
+[![Build Status](https://travis-ci.org/NewFuture/wechat-devtool.svg?branch=master)](https://travis-ci.org/NewFuture/wechat-devtool)
+![Build Status](https://github.com/NewFuture/wechat-devtool/workflows/Node%20CI/badge.svg)
 
 ## required 所需条件
 
