@@ -1,4 +1,4 @@
-# wechat-devtool [![npm version](https://badge.fury.io/js/wechat-devtool.svg)](https://www.npmjs.com/package/miniprogram-build)
+# wechat-devtool [![npm version](https://badge.fury.io/js/wechat-devtool.svg)](https://www.npmjs.com/package/wechat-devtool)
 
 Wechat Miniprogram Devtool CLI cross-platform wrapper for NodeJS and npm
 
