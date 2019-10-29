@@ -92,9 +92,9 @@ export function getPort(): Promise<number> {
 export async function cli(...args: string[]) {
     const cliPath = await getCLIPath();
     if (cliPath) {
-        return execFile(cliPath, args);
+        return execFile(cliPath, args, { timeout: 30000 });
     } else {
-        return exec('"' + DEFAULT_CLI + '" ' + args.map(quote).join(' '))
+        return exec('"' + DEFAULT_CLI + '" ' + args.map(quote).join(' '), { timeout: 30000 })
     }
 }
 

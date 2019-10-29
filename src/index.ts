@@ -1,3 +1,3 @@
 export * from './lib/cli';
 export * from './lib/git';
-export * from './lib//npm';
+export * from './lib/npm';

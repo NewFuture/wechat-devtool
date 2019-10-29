@@ -14,4 +14,4 @@ args.forEach((value, index) => {
         args[index] = resolve(value)
     }
 })
-cliSpawn(args);
+cliSpawn(args, { timeout: 600000 });
