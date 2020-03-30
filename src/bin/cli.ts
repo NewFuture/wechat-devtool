@@ -14,4 +14,10 @@ args.forEach((value, index) => {
         args[index] = resolve(value)
     }
 })
-cliSpawn(args, { timeout: 600000 });
+cliSpawn(args, {
+    stdio: 'inherit',
+    timeout: 180000,
+    shell: true,
+    windowsHide: true,
+    windowsVerbatimArguments: true,
+});

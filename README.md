@@ -16,6 +16,11 @@ Wechat Miniprogram Devtool CLI cross-platform wrapper for NodeJS and npm
 >
 > English: open IDE -> Settings -> Security Settings, and set Service Port On.
 
+
+## tips
+
+> CI集成请使用 miniprogram-build 或 miniprogram-ci
+
 ## quick start
 
 免安装，命令行调用
@@ -48,7 +53,7 @@ npm install wechat-devtool -D
 安装之后会添加其他命令到本地项目,可在 npm scripts 中直接调用
 
 - `cli` 等同于开发工具 CLI,更具系统和安装环境自动调用
-- `upload` 快速上传(对 upload 操作的简化) `upload [[version@]path] [--upload-desc <desc>] [--upload-info-output <path>]`
+- `upload` 快速上传(对 upload 操作的简化) `upload [<path>] [--version version] [--desc <desc>] [--info-output <path>]`
 
 `package.json` 配置文件
 
@@ -74,7 +79,7 @@ npm run upload
 ```js
 import { cli } from "wechat-devtool";
 
-cli("-o")
+cli("open")
   .then(console.log)
   .catch(console.error);
 ```

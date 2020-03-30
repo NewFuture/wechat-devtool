@@ -32,9 +32,11 @@ export async function getCLIPath() {
                 .catch(() => undefined);
             if (result && result.stdout) {
                 const stdout = result.stdout.replace(/\n/g, "");
-                wxPaths.push(path.join(stdout, "/Contents/Resources/app.nw/bin/cli"));
+                wxPaths.push(path.join(stdout, "/Contents/MacOS/cli"));
+                wxPaths.push(path.join(stdout, "/Contents/Resources/app.nw/bin/cli")); 
             }
             // defaults read
+            wxPaths.push("/Applications/wechatwebdevtools.app/Contents/MacOS/cli");
             wxPaths.push("/Applications/wechatwebdevtools.app/Contents/Resources/app.nw/bin/cli");
             break;
         case "win32":
@@ -92,9 +94,9 @@ export function getPort(): Promise<number> {
 export async function cli(...args: string[]) {
     const cliPath = await getCLIPath();
     if (cliPath) {
-        return execFile(cliPath, args, { timeout: 30000 });
+        return execFile(cliPath, args, { timeout: 120000 });
     } else {
-        return exec('"' + DEFAULT_CLI + '" ' + args.map(quote).join(' '), { timeout: 30000 })
+        return exec('"' + DEFAULT_CLI + '" ' + args.map(quote).join(' '), { timeout: 120000 })
     }
 }
 

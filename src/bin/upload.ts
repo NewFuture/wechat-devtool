@@ -9,8 +9,10 @@ import { cliSpawn } from '../lib/cli';
 import { getCommitMsg } from '../lib/git';
 import { getPkgVersion } from '../lib/npm';
 
-const OPTION_UPLOAD_DESC = '--upload-desc';
-const OPTION_UPLOAD_OUTPUT = '--upload-info-output';
+const OPTION_UPLOAD_DESC = '--desc';
+const OPTION_UPLOAD_OUTPUT = '--info-output';
+const OPTION_VERSION = '--version';
+const OPTION_VERSION_SHORT = '-v';
 
 /**
  * 数字转 2 位字符
@@ -31,19 +33,25 @@ function getVersionStr() {
 }
 
 /**
- * `upload [--upload-desc <desc>] [--upload-info-output <path>]`
- * `upload path [--upload-desc <desc>] [--upload-info-output <path>]`
- * `upload version@path [--upload-desc <desc>] [--upload-info-output <path>]`
+ * `upload [--desc <desc>] [--info-output <path>]`
+ * `upload path [--desc <desc>] [--info-output <path>]`
+ * `upload version@path [--desc <desc>] [--info-output <path>]`
  */
 async function getArguments(args: string[]) {
+    const options = ["upload"]
     const version = getVersionStr();
     // --upload
-    if (!args[0] || args[0].startsWith('--upload')) {
-        args.unshift(`${version}@${process.cwd()}`);
-    } else if (args[0].indexOf('@') < 0) {
-        args[0] = `${version}@${resolve(args[0])}`;
+    if (!args[0]) {
+        // // args.unshift(`${version}@${process.cwd()}`);
+        // args.unshift('--project', process.cwd(), OPTION_VERSION, version);
+        options.push('--project', process.cwd());
+    } else if (!args[0].startsWith('--')) {
+        options.push('--project', resolve(args[0]));
     }
-    args.unshift("-u");
+    if (args.indexOf(OPTION_VERSION) === -1 && args.indexOf(OPTION_VERSION_SHORT) === -1) {
+        args.unshift(OPTION_VERSION, version);
+    }
+    args.unshift("upload");
 
     //--upload-info-output
     const outputIndex = args.indexOf(OPTION_UPLOAD_OUTPUT);
