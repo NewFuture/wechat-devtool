@@ -33,7 +33,7 @@ export async function getCLIPath() {
             if (result && result.stdout) {
                 const stdout = result.stdout.replace(/\n/g, "");
                 wxPaths.push(path.join(stdout, "/Contents/MacOS/cli"));
-                wxPaths.push(path.join(stdout, "/Contents/Resources/app.nw/bin/cli")); 
+                wxPaths.push(path.join(stdout, "/Contents/Resources/app.nw/bin/cli"));
             }
             // defaults read
             wxPaths.push("/Applications/wechatwebdevtools.app/Contents/MacOS/cli");
