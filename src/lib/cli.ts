@@ -76,7 +76,7 @@ export function getPort(): Promise<number> {
         ]
         : [
             path.join(home, '/Library/Application Support/微信开发者工具/Default/.ide'),
-            path.join(home, '/Library/Application Support/微信开web发者工具/Default/.ide')
+            path.join(home, '/Library/Application Support/微信web开发者工具/Default/.ide')
         ]
 
     const portPath = portPaths.find(p => fs.existsSync(p));
